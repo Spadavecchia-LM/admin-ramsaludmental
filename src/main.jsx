@@ -4,9 +4,11 @@ import App from './App.jsx'
 import './index.css'
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth"
 import { NextUIProvider } from '@nextui-org/react'
 import { BrowserRouter } from 'react-router-dom';
 import Context from './Context/Context.jsx';
+import FirebaseContext from './Context/FirebaseContext.jsx';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -22,14 +24,20 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+export const auth = getAuth(app)
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Context>
-      <NextUIProvider>
+      <FirebaseContext>
+        <NextUIProvider>
 
-        <App />
-      </NextUIProvider>
+          <App />
+        </NextUIProvider>
+      </FirebaseContext>
+
 
     </Context>
 
