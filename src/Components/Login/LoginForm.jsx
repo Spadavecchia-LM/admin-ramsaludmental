@@ -3,7 +3,6 @@ import { auth } from '../../main'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { Button } from '@nextui-org/react'
 import { AuthContext } from '../../Context/FirebaseContext'
-
 import ProfesionalsTable from '../Dashboard/ProfesionalsTable'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,7 +12,9 @@ const LoginForm = () => {
 
   const { userIsLogged } = value
 
-  console.log(value)
+  const [errorMessage, setErrorMessage] = useState(false)
+
+
 
   const [user, setUser] = useState({
     email: "",
@@ -38,12 +39,18 @@ const LoginForm = () => {
 
     if (!isSigningIn) {
       setIsSigningIn(true)
-      await doSignInWithEmailAndPassword(user.email, user.password)
-      navigate("/dashboard")
-    }else{
-      alert("las credenciales ingresadas no son validas")
-    }
+      try{
+        await doSignInWithEmailAndPassword(user.email, user.password)
+        navigate("/dashboard")
+      }
+   
+      catch(err){
+        setIsSigningIn(false)
+        setErrorMessage(true)
+      }
+ 
   }
+}
 
 
 
@@ -104,6 +111,7 @@ const LoginForm = () => {
                 >
                  {isSigningIn ? "iniciando sesion..." : "Iniciar sesión"}
                 </Button>
+                {errorMessage && <p className='text-danger'>credenciales invalidas</p>}
               </div>
             </form>
 
