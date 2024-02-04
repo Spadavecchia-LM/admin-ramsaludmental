@@ -6,34 +6,11 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "./Context/FirebaseContext";
 
 function App() {
-  const [isTokenValid, setTokenValid] = useState(false);
-  const {value} = useContext(AuthContext)
-  const {userIsLogged} = value
-  
-  useEffect(() => {
-    const validateToken = async () => {
-      const token = localStorage.getItem("accessToken");
-
-      if (token) {
-        setTokenValid(true);
-
-      }
-    };
-
-    validateToken();
-  }, []);
-
-
-
   return (
     <>
       <Routes>
-        <Route
-          path="/dashboard"
-          element={(isTokenValid && userIsLogged )? <ProfesionalsTable /> : <Unauthorized />}
-        />
+        <Route path="/dashboard" element={<ProfesionalsTable />} />
         <Route path="/" element={<LoginForm />} />
-   
       </Routes>
     </>
   );

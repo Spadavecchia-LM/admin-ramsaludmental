@@ -27,12 +27,16 @@ import CustomNavbar from "./CustomNavbar";
 import EditDoctorForm from "../Utils/EditDoctorForm";
 import { IoIosRefresh } from "react-icons/io";
 import AddDoctorForm from "../Utils/AddDoctorForm";
+import { AuthContext } from "../../Context/FirebaseContext";
+import Unauthorized from "../Error/Unauthorized";
 
 const ProfesionalsTable = () => {
   const { state,dispatch } = useContext(GlobalContext);
   const { doctors } = state || {};
+  const {value} = useContext(AuthContext)
+  const {userIsLogged} = value
+  
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const editDisclosure = useDisclosure(); // Para el modal de edición
   const addDisclosure = useDisclosure(); 
 
@@ -51,6 +55,8 @@ const ProfesionalsTable = () => {
       })
       .catch((error) => console.log(error));
   }
+
+
   
 
 
@@ -113,90 +119,97 @@ const ProfesionalsTable = () => {
 
   return (
     <>
-      <CustomNavbar />
+    {userIsLogged ? 
+     <>
+     <CustomNavbar />
 
-      <div className="w-100 flex items-center justify-between mb-4 px-4">
-        <Button
-          endContent={<AiOutlinePlus />}
-          variant="ghost"
-          color="success"
-          size="md"
-          radius="sm"
-          onClick={handleAdd}
+     <div className="w-100 flex items-center justify-between mb-4 px-4">
+       <Button
+         endContent={<AiOutlinePlus />}
+         variant="ghost"
+         color="success"
+         size="md"
+         radius="sm"
+         onClick={handleAdd}
 
-        >
-          Agregar
-        </Button>
+       >
+         Agregar
+       </Button>
 
-        <Button variant="ghost" color="black" size="sm" onClick={() => refresh()}><IoIosRefresh /></Button>
-      </div>
-      <Table isStriped aria-label="Example table with dynamic content" className="px-4">
-        <TableHeader columns={columns}>
-          {(column) => (
-            <TableColumn className="text-primaryGreen" key={column.key}>
-              {column.label}
-            </TableColumn>
-          )}
-        </TableHeader>
-        <TableBody>
-          { doctors  &&
-            doctors.map((row, index) => {
-              return (
-                <TableRow key={index}>
-                  <TableCell>
-                    <Avatar src={row.data.imagen}></Avatar>
-                  </TableCell>
-                  <TableCell>{row.data.nombre}</TableCell>
-                  <TableCell>{row.data.profesion}</TableCell>
-                  <TableCell>{row.data.descripcion}</TableCell>
-                  <TableCell>{row.data.especialidad}</TableCell>
-                  <TableCell>{row.data.duracionCita}</TableCell>
-                  <TableCell>{row.data.precioPesos}</TableCell>
-                  <TableCell>{row.data.precioDolares}</TableCell>
-                  <TableCell>
-                    <Accordion isCompact variant="bordered">
-                      <AccordionItem
-                        aria-label="habilidades"
-                        title="habilidades"
-                        indicator={({ isOpen }) =>
-                          isOpen ? <TbEye /> : <TbEyeClosed />
-                        }
-                      >
-                        {row.data.habilidades.map((e, index) => (
-                          <p key={index}>{e}</p>
-                        ))}
-                      </AccordionItem>
-                    </Accordion>
-                  </TableCell>
-                  <TableCell>{row.data.calendlyLink}</TableCell>
-                  <TableCell className="flex gap-2 items-center justify center">
-                    <Button
-                      onClick={() => handleEdit(row)}
-                      variant="ghost"
-                      size="sm"
-                    >
-                      <FaRegEdit className="text-primary" />
-                    </Button>
+       <Button variant="ghost" color="black" size="sm" onClick={() => refresh()}><IoIosRefresh /></Button>
+     </div>
+     <Table isStriped aria-label="Example table with dynamic content" className="px-4">
+       <TableHeader columns={columns}>
+         {(column) => (
+           <TableColumn className="text-primaryGreen" key={column.key}>
+             {column.label}
+           </TableColumn>
+         )}
+       </TableHeader>
+       <TableBody>
+         { doctors  &&
+           doctors.map((row, index) => {
+             return (
+               <TableRow key={index}>
+                 <TableCell>
+                   <Avatar src={row.data.imagen}></Avatar>
+                 </TableCell>
+                 <TableCell>{row.data.nombre}</TableCell>
+                 <TableCell>{row.data.profesion}</TableCell>
+                 <TableCell>{row.data.descripcion}</TableCell>
+                 <TableCell>{row.data.especialidad}</TableCell>
+                 <TableCell>{row.data.duracionCita}</TableCell>
+                 <TableCell>{row.data.precioPesos}</TableCell>
+                 <TableCell>{row.data.precioDolares}</TableCell>
+                 <TableCell>
+                   <Accordion isCompact variant="bordered">
+                     <AccordionItem
+                       aria-label="habilidades"
+                       title="habilidades"
+                       indicator={({ isOpen }) =>
+                         isOpen ? <TbEye /> : <TbEyeClosed />
+                       }
+                     >
+                       {row.data.habilidades.map((e, index) => (
+                         <p key={index}>{e}</p>
+                       ))}
+                     </AccordionItem>
+                   </Accordion>
+                 </TableCell>
+                 <TableCell>{row.data.calendlyLink}</TableCell>
+                 <TableCell className="flex gap-2 items-center justify center">
+                   <Button
+                     onClick={() => handleEdit(row)}
+                     variant="ghost"
+                     size="sm"
+                   >
+                     <FaRegEdit className="text-primary" />
+                   </Button>
 
-                    <Button variant="ghost" size="sm">
-                      <FaTrash className="text-danger" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-        </TableBody>
-      </Table>
-      <Modal isOpen={editDisclosure.isOpen} onClose={editDisclosure.onClose}>
-        <ModalContent>
-          {selectedDoctor && <EditDoctorForm doctor={selectedDoctor} />}
-        </ModalContent>
-      </Modal>
-      <Modal isOpen={addDisclosure.isOpen} onClose={addDisclosure.onClose}>
-        <ModalContent>
-          <AddDoctorForm />
-        </ModalContent>
-      </Modal>
+                   <Button variant="ghost" size="sm">
+                     <FaTrash className="text-danger" />
+                   </Button>
+                 </TableCell>
+               </TableRow>
+             );
+           })}
+       </TableBody>
+     </Table>
+     <Modal isOpen={editDisclosure.isOpen} onClose={editDisclosure.onClose}>
+       <ModalContent>
+         {selectedDoctor && <EditDoctorForm doctor={selectedDoctor} />}
+       </ModalContent>
+     </Modal>
+     <Modal isOpen={addDisclosure.isOpen} onClose={addDisclosure.onClose}>
+       <ModalContent>
+         <AddDoctorForm />
+       </ModalContent>
+     </Modal>
+     </>
+     :
+     <Unauthorized/>
+  }
+ 
     </>
   );
 };
