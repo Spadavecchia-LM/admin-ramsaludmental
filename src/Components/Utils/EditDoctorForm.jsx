@@ -71,8 +71,8 @@ const EditDoctorForm = ({ doctor }) => {
 
 
   return (
-    <div className="max-w-md mt-8 p-6 bg-white rounded-md shadow-md">
-    <h2 className="text-2xl font-semibold mb-4">Edit Doctor</h2>
+    <div className=" max-w-md mt-8 p-6 bg-white rounded-md shadow-md">
+    <h2 className="text-2xl font-semibold mb-4">Editar doctor</h2>
     <label className="block mb-4">
       id
       <input
@@ -94,7 +94,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Name:
+      Nombre:
       <input
         type="text"
         name="nombre"
@@ -104,7 +104,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Profession:
+      Profesion:
       <input
         type="text"
         name="profesion"
@@ -114,7 +114,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Description:
+      Descripcion:
       <textarea
         name="descripcion"
         value={updatedDoctor.data.descripcion}
@@ -123,7 +123,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Specialty:
+      Especialidad:
       <input
         type="text"
         name="especialidad"
@@ -133,7 +133,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Appointment Duration:
+      Duracion de la cita:
       <input
         type="text"
         name="duracionCita"
@@ -143,7 +143,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Price in Pesos:
+      Precio en Pesos:
       <input
         type="number"
         name="precioPesos"
@@ -153,7 +153,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Price in Dollars:
+      Precio en dolares:
       <input
         type="number"
         name="precioDolares"
@@ -163,7 +163,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Skills:
+      Habilidades (separadas en comas):
       <input
         type="text"
         name="habilidades"
@@ -173,7 +173,7 @@ const EditDoctorForm = ({ doctor }) => {
       />
     </label>
     <label className="block mb-4">
-      Calendly Link:
+      Link de Calendly:
       <input
         type="text"
         name="calendlyLink"

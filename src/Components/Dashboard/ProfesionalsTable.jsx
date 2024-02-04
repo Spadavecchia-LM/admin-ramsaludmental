@@ -35,6 +35,7 @@ const ProfesionalsTable = () => {
   const { doctors } = state || {};
   const {value} = useContext(AuthContext)
   const {userIsLogged} = value
+ 
   
 
   const editDisclosure = useDisclosure(); // Para el modal de edición
@@ -119,7 +120,7 @@ const ProfesionalsTable = () => {
 
   return (
     <>
-    {userIsLogged ? 
+    {userIsLogged && localStorage.getItem("accessToken") ? 
      <>
      <CustomNavbar />
 
@@ -177,11 +178,12 @@ const ProfesionalsTable = () => {
                    </Accordion>
                  </TableCell>
                  <TableCell>{row.data.calendlyLink}</TableCell>
-                 <TableCell className="flex gap-2 items-center justify center">
+                 <TableCell className="flex gap-2 items-center justify center py-4">
                    <Button
                      onClick={() => handleEdit(row)}
                      variant="ghost"
                      size="sm"
+                     
                    >
                      <FaRegEdit className="text-primary" />
                    </Button>
@@ -195,12 +197,12 @@ const ProfesionalsTable = () => {
            })}
        </TableBody>
      </Table>
-     <Modal isOpen={editDisclosure.isOpen} onClose={editDisclosure.onClose}>
+     <Modal isOpen={editDisclosure.isOpen} onClose={editDisclosure.onClose} scrollBehavior="inside">
        <ModalContent>
          {selectedDoctor && <EditDoctorForm doctor={selectedDoctor} />}
        </ModalContent>
      </Modal>
-     <Modal isOpen={addDisclosure.isOpen} onClose={addDisclosure.onClose}>
+     <Modal isOpen={addDisclosure.isOpen} onClose={addDisclosure.onClose} scrollBehavior="inside">
        <ModalContent>
          <AddDoctorForm />
        </ModalContent>
