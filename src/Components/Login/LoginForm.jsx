@@ -49,8 +49,10 @@ const LoginForm = () => {
         // Guarda el token de acceso en el localStorage
         localStorage.setItem("accessToken", accessToken);
 
-        // Continúa con la navegación
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+
+        },2000)
       } catch (error) {
         // Maneja el error
         setIsSigningIn(false);
