@@ -40,6 +40,8 @@ const FirebaseContext = ({ children }) => {
         return unsubscribe;
     }, [])
 
+    console.log(value)
+
     return (
         <AuthContext.Provider value={{value}}>
             {!loading && children}

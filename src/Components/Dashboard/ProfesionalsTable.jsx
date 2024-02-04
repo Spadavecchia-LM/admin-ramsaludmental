@@ -9,14 +9,15 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  
 } from "@nextui-org/react";
-import {Accordion, AccordionItem} from "@nextui-org/react";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 import { FaRegEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { GlobalContext } from "../../Context/Context";
 import { TbEye } from "react-icons/tb";
 import { TbEyeClosed } from "react-icons/tb";
+import { AiOutlinePlus } from "react-icons/ai";
+import CustomNavbar from "./CustomNavbar";
 
 const ProfesionalsTable = () => {
   const { state } = useContext(GlobalContext);
@@ -79,15 +80,14 @@ const ProfesionalsTable = () => {
 
   return (
     <>
-    <div className="w-100 flex justify-end mb-24 p-5" >
-      <Button color="danger" variant="ghost" onClick={cerrarSesion}>cerrar sesion</Button>
+   <CustomNavbar/>
 
-    </div>
-
-<div className="w-100 flex justify-center mb-20" >
-  <Button variant="ghost" color="success" size="lg" radius="sm" >Agregar</Button>
-</div>
-      <Table isStriped aria-label="Example table with dynamic content" >
+      <div className="w-100 flex justify-start mb-4 pl-4">
+        <Button endContent={<AiOutlinePlus />} variant="ghost" color="success" size="md" radius="sm">
+          Agregar
+        </Button>
+      </div>
+      <Table isStriped aria-label="Example table with dynamic content">
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn className="text-primaryGreen" key={column.key}>
@@ -99,7 +99,9 @@ const ProfesionalsTable = () => {
           {doctors.map((row, index) => {
             return (
               <TableRow key={index}>
-                <TableCell><Avatar src={row.imagen}></Avatar></TableCell>
+                <TableCell>
+                  <Avatar src={row.imagen}></Avatar>
+                </TableCell>
                 <TableCell>{row.nombre}</TableCell>
                 <TableCell>{row.profesion}</TableCell>
                 <TableCell>{row.descripcion}</TableCell>
@@ -108,18 +110,28 @@ const ProfesionalsTable = () => {
                 <TableCell>{row.precioPesos}</TableCell>
                 <TableCell>{row.precioDolares}</TableCell>
                 <TableCell>
-                  <Accordion isCompact  variant="bordered">
-                    <AccordionItem aria-label="habilidades" title="habilidades" indicator={({ isOpen }) => (isOpen ? <TbEye /> : <TbEyeClosed /> )}>
-                      {row.habilidades.map((e,index) => <p key={index}>{e}</p>)}
+                  <Accordion isCompact variant="bordered">
+                    <AccordionItem
+                      aria-label="habilidades"
+                      title="habilidades"
+                      indicator={({ isOpen }) =>
+                        isOpen ? <TbEye /> : <TbEyeClosed />
+                      }
+                    >
+                      {row.habilidades.map((e, index) => (
+                        <p key={index}>{e}</p>
+                      ))}
                     </AccordionItem>
                   </Accordion>
                 </TableCell>
-                <TableCell>
-                  {row.calendlyLink}
-                </TableCell>
-                <TableCell className="flex gap-5 items-center">
-                  <FaRegEdit className="text-primary" />
+                <TableCell>{row.calendlyLink}</TableCell>
+                <TableCell  className="flex gap-2 items-center justify center" >
+                  <Button  variant="ghost" size="sm">
+                    <FaRegEdit className="text-primary" />
+                  </Button>
+                  <Button variant="ghost" size="sm">
                   <FaTrash className="text-danger" />
+                  </Button>
                 </TableCell>
               </TableRow>
             );
