@@ -27,7 +27,7 @@ function App() {
       <Routes>
         <Route
           path="/dashboard"
-          element={isTokenValid && !tokenIsValidating ? <ProfesionalsTable /> : <Unauthorized />}
+          element={isTokenValid && !tokenIsValidating && localStorage.getItem("accessToken") ? <ProfesionalsTable /> : <Unauthorized />}
         />
         <Route path="/" element={<LoginForm />} />
    

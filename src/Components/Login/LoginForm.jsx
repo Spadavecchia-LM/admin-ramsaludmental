@@ -52,7 +52,7 @@ const LoginForm = () => {
         setTimeout(() => {
           navigate("/dashboard");
 
-        },2000)
+        },3000)
       } catch (error) {
         // Maneja el error
         setIsSigningIn(false);
