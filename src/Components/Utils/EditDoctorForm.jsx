@@ -71,7 +71,7 @@ const EditDoctorForm = ({ doctor }) => {
 
 
   return (
-    <div className=" max-w-md mt-8 p-6 bg-white rounded-md shadow-md">
+    <div className="max-w-md mt-8 p-6 bg-white rounded-md shadow-md">
     <h2 className="text-2xl font-semibold mb-4">Editar doctor</h2>
     <label className="block mb-4">
       id

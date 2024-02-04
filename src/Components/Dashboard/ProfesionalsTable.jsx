@@ -197,12 +197,12 @@ const ProfesionalsTable = () => {
            })}
        </TableBody>
      </Table>
-     <Modal isOpen={editDisclosure.isOpen} onClose={editDisclosure.onClose} scrollBehavior="inside">
+     <Modal isOpen={editDisclosure.isOpen} onClose={editDisclosure.onClose} scrollBehavior="outside" size="xs" placement="top">
        <ModalContent>
          {selectedDoctor && <EditDoctorForm doctor={selectedDoctor} />}
        </ModalContent>
      </Modal>
-     <Modal isOpen={addDisclosure.isOpen} onClose={addDisclosure.onClose} scrollBehavior="inside">
+     <Modal isOpen={addDisclosure.isOpen} onClose={addDisclosure.onClose} scrollBehavior="outside" size="xs" placement="top">
        <ModalContent>
          <AddDoctorForm />
        </ModalContent>
