@@ -13,8 +13,8 @@ function App() {
 
       if (token) {
         setTokenValid(true);
+        setTokenIsValidating(false)
       }
-      setTokenIsValidating(false)
     };
 
     validateToken();

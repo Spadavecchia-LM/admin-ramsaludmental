@@ -44,7 +44,7 @@ const LoginForm = () => {
       setIsSigningIn(true);
 
       try {
-        const {accessToken } = await doSignInWithEmailAndPassword(user.email, user.password);
+        const {accessToken } = await doSignInWithEmailAndPassword(user.email, user.password)
 
         // Guarda el token de acceso en el localStorage
         localStorage.setItem("accessToken", accessToken);
@@ -67,7 +67,7 @@ const LoginForm = () => {
 
   return (
     <>
-      {userIsLogged ? (
+      {userIsLogged && localStorage.getItem("accessToken") ? (
         <ProfesionalsTable />
       ) : (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
