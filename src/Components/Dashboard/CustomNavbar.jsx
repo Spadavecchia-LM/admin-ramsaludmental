@@ -14,7 +14,7 @@ const CustomNavbar = () => {
       };
 
   return (
-    <div className='h-20 w-screen flex justify-between items-center px-5 mb-24'>
+    <div className='h-20 w-screen flex justify-between items-center px-4 mb-24'>
     <div className='w-1/2'>
       <img className='w-24' src="https://res.cloudinary.com/leoms96/image/upload/v1706889662/ramsaludmental/Mask_group_eawvj2.png" alt="ram logo" />
     </div>
