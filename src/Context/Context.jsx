@@ -50,7 +50,7 @@ const Context = ({ children }) => {
       .catch((error) => console.log(error));
   }, []);
 
-  console.log(state);
+
 
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>
