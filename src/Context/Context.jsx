@@ -7,6 +7,7 @@ const Context = ({ children }) => {
   const initialValue = {
     doctors: [],
     isEditing: false,
+    mensajes: []
   };
   const reducer = (state, action) => {
     switch (action.type) {
@@ -32,6 +33,8 @@ const Context = ({ children }) => {
           ...state,
           doctors: [...state.doctors, action.payload],
         };
+      case "GET_MENSAJES":
+        return {...state, mensajes: action.payload}
     }
   };
   const [state, dispatch] = useReducer(reducer, initialValue);
@@ -39,6 +42,7 @@ const Context = ({ children }) => {
   useEffect(() => {
     const db = getFirestore();
     const itemsCollection = collection(db, "profesionales");
+ 
 
     getDocs(itemsCollection)
       .then((snapshot) => {
@@ -48,10 +52,10 @@ const Context = ({ children }) => {
         dispatch({ type: "GET_DOCTORS", payload: docs });
       })
       .catch((error) => console.log(error));
+
   }, []);
 
-
-
+console.log(state)
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>
       {children}

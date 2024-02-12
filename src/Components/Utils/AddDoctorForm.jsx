@@ -128,7 +128,7 @@ const AddDoctorForm = () => {
         />
       </label>
       <label className="block mb-4">
-        Duración de la Cita:
+        Duración de la cita en minutos:
         <input
           type="text"
           name="duracionCita"

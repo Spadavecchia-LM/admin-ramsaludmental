@@ -18,11 +18,17 @@ const CustomNavbar = () => {
     <div className='w-1/2'>
       <img className='w-24' src="https://res.cloudinary.com/leoms96/image/upload/v1706889662/ramsaludmental/Mask_group_eawvj2.png" alt="ram logo" />
     </div>
-  
-  
-      <Button color="danger" size='sm' variant="ghost" onClick={cerrarSesion}>
+    <div>
+    <span className='pr-4 cursor-pointer' onClick={() => navigate("/dashboard")}>profesionales</span>
+    <span className='pr-4 cursor-pointer'  onClick={() => navigate("/dashboard/mensajes")}>mensajes</span>
+    <Button color="danger" size='sm' variant="ghost" onClick={cerrarSesion}>
           cerrar sesion
         </Button>
+    </div>
+  
+
+  
+   
   
   </div>
   )
