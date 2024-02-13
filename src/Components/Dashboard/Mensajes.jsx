@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import CustomNavbar from './CustomNavbar'
 import { GlobalContext } from '../../Context/Context'
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
-import {Accordion, AccordionItem} from "@nextui-org/react";
+import {Accordion, AccordionItem, Avatar} from "@nextui-org/react";
 
 const Mensajes = () => {
 
@@ -31,7 +31,7 @@ const Mensajes = () => {
   return (
     <>
     <CustomNavbar/>
-    <Accordion className='w-[80vw] mx-auto'>
+    <Accordion className='w-[70vw] mx-auto'>
   {mensajes.map(e => {
  
     const formattedDate = e.data.fecha ? e.data.fecha.toDate() : null;
@@ -42,13 +42,13 @@ const Mensajes = () => {
       const formatoHora = `${formattedDate.getHours()}:${formattedDate.getMinutes()}:${formattedDate.getSeconds()}`;
 
       return (
-        <AccordionItem indicator={"ver mensaje"} className='py-5' key={e.data.id} aria-label={e.data.nombre} subtitle={e.data.remitente} title={`${e.data.nombre} - enviado el ${formatoFecha} a las ${formatoHora}hs`}>
+        <AccordionItem startContent={<Avatar radius='sm' color='primary' name={e.data.nombre.substring(0,1).toUpperCase()}/>} indicator={"ver mensaje"} className='py-5 text-sm' key={e.data.id} aria-label={e.data.nombre} subtitle={`mail: ${e.data.remitente}`} title={`De: ${e.data.nombre} recibido el ${formatoFecha} a las ${formatoHora}hs`}>
           {e.data.mensaje}
         </AccordionItem>
       );
     } else {
       return (
-        <AccordionItem className='py-5' key={e.data.id} aria-label={e.data.nombre} subtitle={e.data.remitente} title={`${e.data.nombre} - Fecha no disponible`}>
+        <AccordionItem startContent={<Avatar radius='sm' color='primary' name={e.data.nombre.substring(0,1).toUpperCase()}/>} indicator={"ver mensaje"} className='py-5 text-sm' key={e.data.id} aria-label={e.data.nombre} subtitle={e.data.remitente} title={`De: ${e.data.nombre} Fecha no disponible`}>
           {e.data.mensaje}
         </AccordionItem>
       );

@@ -61,6 +61,7 @@ const AddDoctorForm = () => {
         profesion: '',
         descripcion: '',
         especialidad: '',
+        nacionalidad:"",
         duracionCita: '',
         precioPesos: '',
         precioDolares: '',
@@ -124,6 +125,17 @@ const AddDoctorForm = () => {
           name="especialidad"
           value={newDoctor.especialidad}
           onChange={handleInputChange}
+          className="form-input mt-1 block w-full"
+        />
+      </label>
+      <label className="block mb-4">
+        nacionalidad:
+        <input
+          type="text"
+          name="nacionalidad"
+          value={newDoctor.nacionalidad}
+          onChange={handleInputChange}
+          placeholder='nombre del pais'
           className="form-input mt-1 block w-full"
         />
       </label>

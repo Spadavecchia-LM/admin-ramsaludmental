@@ -79,8 +79,12 @@ const ProfesionalsTable = () => {
       label: "especialidad",
     },
     {
-      key: "duracion cita",
-      label: "duracion cita",
+      key: "nacionalidad",
+      label: "nacionalidad",
+    },
+    {
+      key: "duracion cita (minutos)",
+      label: "duracion cita (minutos)",
     },
     {
       key: "precio en pesos",
@@ -195,6 +199,7 @@ const ProfesionalsTable = () => {
                       <TableCell>{row.data.profesion}</TableCell>
                       <TableCell>{row.data.descripcion}</TableCell>
                       <TableCell>{row.data.especialidad}</TableCell>
+                      <TableCell>{row.data.nacionalidad}</TableCell>
                       <TableCell>{row.data.duracionCita}</TableCell>
                       <TableCell>{row.data.precioPesos}</TableCell>
                       <TableCell>{row.data.precioDolares}</TableCell>

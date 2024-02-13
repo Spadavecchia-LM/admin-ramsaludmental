@@ -44,6 +44,7 @@ const EditDoctorForm = ({ doctor }) => {
         profesion: updatedDoctor.data.profesion,
         descripcion: updatedDoctor.data.descripcion,
         especialidad: updatedDoctor.data.especialidad,
+        nacionalidad: updatedDoctor.data.nacionalidad,
         duracionCita: updatedDoctor.data.duracionCita,
         precioPesos: updatedDoctor.data.precioPesos,
         precioDolares: updatedDoctor.data.precioDolares,
@@ -129,6 +130,17 @@ const EditDoctorForm = ({ doctor }) => {
         name="especialidad"
         value={updatedDoctor.data.especialidad}
         onChange={handleInputChange}
+        className="form-input mt-1 block w-full"
+      />
+    </label>
+    <label className="block mb-4">
+      nacionalidad:
+      <input
+        type="text"
+        name="nacionalidad"
+        value={updatedDoctor.data.nacionalidad}
+        onChange={handleInputChange}
+        placeholder="nombre del pais"
         className="form-input mt-1 block w-full"
       />
     </label>
