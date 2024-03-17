@@ -1,8 +1,15 @@
-# React + Vite
+# Panel de administración para RAM salud mental.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Como parte de un beneficio de CODERHOUSE nos asignaron a mi y a 6 mas un proyecto real en donde teniamos que realizar una landing page y un panel de administración para gestionar los profesionales de la clínica.
 
-Currently, two official plugins are available:
+El equipo estaba conformado por 4 diseñadores UX/UI y 3 desarrolladores REACT.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Yo me encargue de realizar el panel de administracíon
+
+### Tecnologias:
+- React JS
+- Next UI - Tailwind css
+- Firebase Auth
+- Firestore Data Base
+
+ [URL]([https://admin-ramsaludmental.vercel.app/]) 
